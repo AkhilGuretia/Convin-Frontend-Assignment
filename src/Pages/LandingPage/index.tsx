@@ -55,9 +55,11 @@ const LandingPage = () => {
   const [motivationChecklist, setMotivationChecklist] = useState<any>([]);
 
   const intitalizeData = async () => {
-    let entertainment = axios.get(`http://localhost:3001/entertainment`);
-    let education = axios.get(`http://localhost:3001/education`);
-    let motivation = axios.get(`http://localhost:3001/motivation`);
+    let entertainment = axios.get(
+      `https://localserver.onrender.com/entertainment`
+    );
+    let education = axios.get(`https://localserver.onrender.com/education`);
+    let motivation = axios.get(`https://localserver.onrender.com/motivation`);
 
     await Promise.all([entertainment, education, motivation])
       .then((res) => {
@@ -73,7 +75,7 @@ const LandingPage = () => {
   const onUpdate = async (id: string, type: string) => {
     setIsEditDetailsModalOpen(true);
     await axios.put(
-      `http://localhost:3001/${currentlyOpenCard?.category}/${id}`,
+      `https://localserver.onrender.com/${currentlyOpenCard?.category}/${id}`,
       {
         name: currentlyOpenCard?.name,
         link: currentlyOpenCard?.link,
@@ -88,7 +90,7 @@ const LandingPage = () => {
     );
   };
   const onDelete = async (id: string, type: string) => {
-    await axios.delete(`http://localhost:3001/${type}/${id}`, {
+    await axios.delete(`https://localserver.onrender.com/${type}/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -110,7 +112,7 @@ const LandingPage = () => {
 
   const updateTimesPlayed = async () => {
     await axios.put(
-      `http://localhost:3001/${currentlyOpenCard?.category}/${currentlyOpenCard?.id}`,
+      `https://localserver.onrender.com/${currentlyOpenCard?.category}/${currentlyOpenCard?.id}`,
       {
         ...currentlyOpenCard,
         timesPlayed: currentlyOpenCard?.timesPlayed + 1,
@@ -315,7 +317,7 @@ const LandingPage = () => {
                       <Button
                         onClick={async () => {
                           await axios.post(
-                            `http://localhost:3001/${cardCreationPayload?.category}`,
+                            `https://localserver.onrender.com/${cardCreationPayload?.category}`,
                             {
                               id: new Date().valueOf(),
                               ...cardCreationPayload,
@@ -383,7 +385,7 @@ const LandingPage = () => {
                       variant="contained"
                       onClick={async () => {
                         await axios.post(
-                          `http://localhost:3001/${shiftedCategory}`,
+                          `https://localserver.onrender.com/${shiftedCategory}`,
                           {
                             ...currentlyOpenCard,
                             id: new Date().valueOf(),
@@ -399,7 +401,7 @@ const LandingPage = () => {
                         );
 
                         await axios.delete(
-                          `http://localhost:3001/${currentlyOpenCard?.category}/${currentlyOpenCard?.id}`,
+                          `https://localserver.onrender.com/${currentlyOpenCard?.category}/${currentlyOpenCard?.id}`,
                           {
                             headers: {
                               "Content-Type": "application/json",
@@ -448,7 +450,7 @@ const LandingPage = () => {
                         itr++
                       ) {
                         await axios.delete(
-                          `http://localhost:3001/entertainment/${entertainmentChecklist?.[itr]?.id}`,
+                          `https://localserver.onrender.com/entertainment/${entertainmentChecklist?.[itr]?.id}`,
                           {
                             headers: {
                               "Content-Type": "application/json",
@@ -520,7 +522,7 @@ const LandingPage = () => {
                         itr++
                       ) {
                         await axios.delete(
-                          `http://localhost:3001/education/${educationChecklist?.[itr]?.id}`,
+                          `https://localserver.onrender.com/education/${educationChecklist?.[itr]?.id}`,
                           {
                             headers: {
                               "Content-Type": "application/json",
@@ -595,7 +597,7 @@ const LandingPage = () => {
                         itr++
                       ) {
                         await axios.delete(
-                          `http://localhost:3001/motivation/${motivationChecklist?.[itr]?.id}`,
+                          `https://localserver.onrender.com/motivation/${motivationChecklist?.[itr]?.id}`,
                           {
                             headers: {
                               "Content-Type": "application/json",
