@@ -8,6 +8,8 @@ interface CardListProps {
   onIframeClick: (cardDetails: any) => void;
   onEditClick: (cardDetails: any) => void;
   onShiftCategory: (cardDetails: any) => void;
+  checkedList: any[];
+  onCheckBoxChange: (cardDetails: any, value: boolean) => void;
 }
 
 const CardList = ({
@@ -17,6 +19,8 @@ const CardList = ({
   onIframeClick,
   onEditClick,
   onShiftCategory,
+  checkedList,
+  onCheckBoxChange,
 }: CardListProps) => {
   return (
     <Grid container spacing={4}>
@@ -30,6 +34,10 @@ const CardList = ({
               onIframeClick={onIframeClick}
               cardDetails={card}
               onShiftCategory={onShiftCategory}
+              checked={checkedList?.some((checkedItem) => {
+                return checkedItem?.id === card?.id;
+              })}
+              onCheckBoxChange={onCheckBoxChange}
             />
           }
         </Grid>

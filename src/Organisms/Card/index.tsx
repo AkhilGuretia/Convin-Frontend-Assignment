@@ -3,6 +3,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  Checkbox,
   IconButton,
   Typography,
   useTheme,
@@ -26,6 +27,8 @@ interface ICard {
   onDeleteClick: (id: string, type: string) => Promise<void>;
   onIframeClick: (cardDetails: any) => void;
   onShiftCategory: (cardDetails: any) => void;
+  checked: boolean;
+  onCheckBoxChange: (cardDetails: any, value: boolean) => void;
 }
 const CustomCard = ({
   cardDetails,
@@ -34,6 +37,8 @@ const CustomCard = ({
   onEditClick,
   onUpdateClick,
   onShiftCategory,
+  onCheckBoxChange,
+  checked,
 }: ICard) => {
   const theme = useTheme();
   const { id, name } = cardDetails;
@@ -44,6 +49,7 @@ const CustomCard = ({
         width: theme.spacing(100),
         boxShadow: "0px 12px 16px rgba(0, 0, 0, 0.08)",
         cursor: "pointer",
+        backgroundColor: "#ECECEC",
       }}
     >
       <CardContent>
@@ -89,6 +95,13 @@ const CustomCard = ({
         >
           <DriveFileMoveIcon />
         </Button>
+        <Checkbox
+          sx={{ marginLeft: 36 }}
+          checked={checked}
+          onChange={(e) => {
+            onCheckBoxChange(cardDetails, e.target.checked);
+          }}
+        />
       </CardActions>
     </Card>
   );

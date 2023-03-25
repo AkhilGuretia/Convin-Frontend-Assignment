@@ -7,22 +7,12 @@ import LandingPage from "./Pages/LandingPage";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        {/* <SideNavbar components={SIDE_NAV_ITEMS} /> */}
-        {/* <Footer /> */}
-        {/* <Header primaryHeaderText="Trade" /> */}
+      <div className="App" style={{ backgroundColor: "#ebe7e4" }}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LandingPage />} />
           </Routes>
         </BrowserRouter>
-        {/* <CustomCard
-          cardDetails={{
-            id: 1,
-            name: "Football video",
-            link: "https://www.youtube.com/embed/tgbNymZ7vqY",
-          }}
-        /> */}
       </div>
     </ThemeProvider>
   );
